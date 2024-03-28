@@ -30,7 +30,7 @@ export default function Header() {
 
         <Link to='/sign-in'>
         <li className='nav-item text-red-200'>
-            <p className='nav-link'>SignIn</p>
+            <p className='nav-link'>Sign In</p>
           </li>
         </Link>
         </ul>
