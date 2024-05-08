@@ -27,6 +27,7 @@ body {
     font-size: 20px;
     font-weight: 700;
     color: #fff;
+    text-decoration: underline #851f1f;
 }
 
 .header .container .forms-container{
@@ -73,3 +74,4 @@ body {
 .header .container .link-container .nav-item .nav-link:hover {
     color: #f4f4f4;
 }
+
