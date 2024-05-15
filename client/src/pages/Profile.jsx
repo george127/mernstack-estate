@@ -186,7 +186,7 @@ export default function Profile() {
         <p className='profile-text'>
           {fileUploadError ? (
             <span className='profile-error'>
-              Error Image upload (image must be less than 2 mb)
+              Error Image Upload (image must be less than 2 mb)
             </span>
           ) : filePerc > 0 && filePerc < 100 ? (
             <span className='profile-upload'>{`Uploading ${filePerc}%`}</span>

@@ -76,7 +76,7 @@ export default function SignUp() {
       <div className='signup-login'>
         <p>Have an account?</p>
         <Link  to={'/sign-in'}>
-        <span>Sign in</span>
+        <span>Sign In</span>
         </Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
