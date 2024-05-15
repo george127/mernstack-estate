@@ -7,6 +7,7 @@ import {
   signInSuccess,
   signInFailure,
 } from '../redux/user/userSlice';
+import OAuth from '../component/OAuth';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -64,6 +65,7 @@ export default function SignIn() {
         <button  disabled={loading} className="btn bg-rose-200">
         {loading ? 'Loading...' : 'Sign In'}
         </button>
+        <OAuth/>
       </form>
       <div className='signup-login'>
         <p>Dont Have an account?</p>
