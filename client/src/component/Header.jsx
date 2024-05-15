@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom'
-import './Header.css'
+import { Link } from 'react-router-dom';
+import './Header.css';
+import { useSelector } from 'react-redux';
+
 
 export default function Header() {
+  const { currentUser } = useSelector((state) => state.user);
+
   return (
     <header className='header'>
         <div className='container'>
@@ -28,11 +32,19 @@ export default function Header() {
           </li>
           </Link>
 
-        <Link to='/sign-in'>
-        <li className='nav-item text-red-200'>
+        <Link to='/profile'>
+            {currentUser ? (
+              <img
+                className='Image'
+                src={currentUser.avatar}
+                alt='profile'
+              />
+            ) : (
+              <li className='nav-item text-red-200'>
             <p className='nav-link'>Sign In</p>
           </li>
-        </Link>
+            )}
+          </Link>
         </ul>
         </div>
     </header>
