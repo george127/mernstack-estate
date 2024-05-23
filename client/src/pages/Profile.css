@@ -31,7 +31,9 @@ body {
 .profile-image .image{
     width: 100px;
     height: 100px;
+    cursor: pointer;
     border-radius: 50%;
+    overflow: hidden;
 }
 
 .profile-form{
@@ -114,6 +116,5 @@ body {
     font-weight: 400;
     margin-top: 20px;
     margin-bottom: 20px;
-    color: #79d350;
     width: 100%;
 }

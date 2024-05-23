@@ -19,9 +19,7 @@ import {
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 export default function Profile() {
-
   const fileRef = useRef(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined);
@@ -125,7 +123,7 @@ export default function Profile() {
       }
       dispatch(deleteUserSuccess(data));
     } catch (error) {
-      dispatch(deleteUserFailure(data.message));
+      dispatch(deleteUserFailure(error.message));
     }
   };
 
@@ -163,7 +161,6 @@ export default function Profile() {
       console.log(error.message);
     }
   };
-
   return (
     <div className="container">
     <div className='profile-container'>
@@ -185,13 +182,13 @@ export default function Profile() {
         </div>
         <p className='profile-text'>
           {fileUploadError ? (
-            <span className='profile-error'>
+            <span className='profile-error text-red-700'>
               Error Image Upload (image must be less than 2 mb)
             </span>
           ) : filePerc > 0 && filePerc < 100 ? (
-            <span className='profile-upload'>{`Uploading ${filePerc}%`}</span>
+            <span className='profile-upload text-black'>{`Uploading ${filePerc}%`}</span>
           ) : filePerc === 100 ? (
-            <span className='profile-success'>Image successfully uploaded!</span>
+            <span className='profile-success text-green-500'>Image successfully uploaded!</span>
           ) : (
             ''
           )}
@@ -245,7 +242,7 @@ export default function Profile() {
       </div>
   
       <p className='profile-error'>{error ? error : ''}</p>
-      <p className='profile-success'>
+      <p className='profile-success text-green-500'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
       <button onClick={handleShowListings} className='profile-show-listings'>

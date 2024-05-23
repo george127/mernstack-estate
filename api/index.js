@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
+import cookieParser from 'cookie-parser';
+import listingRouter from './routes/listing.route.js';
 
 dotenv.config(); 
 
@@ -10,6 +12,8 @@ const app = express();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+
+app.use(cookieParser());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO)
@@ -28,6 +32,7 @@ app.get('/test', (req, res) => {
 // Routes
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/listing", listingRouter);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
