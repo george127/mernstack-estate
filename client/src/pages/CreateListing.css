@@ -1,0 +1,137 @@
+.profile {
+  padding: 1rem;
+  max-width: 1024px;
+  margin: 0 auto;
+  display: block;
+}
+
+.title {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 30px;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.input,
+.textarea,
+.select,
+.file-input,
+.button,
+.checkbox-label {
+  padding: 0.75rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+  width: 100%;
+}
+
+.button {
+    border: none;
+    color: #333;
+    width: 100%;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 10px;
+    transition: all 600ms ease-in-out;
+}
+
+.button:hover {
+  background-color: #851f1f;
+    color: #ffff;
+}
+
+.button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-flow: wrap;
+  gap: 1rem;
+}
+
+.checkbox-group .button{
+    width: 60%;
+}
+
+.checkbox-group .checkbox-item .Input{
+    width: 80px;
+    padding: 5px 4px;
+    border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+}
+
+.checkbox-group .checkbox-item p{
+    font-size: 13px;
+}
+
+
+.checkbox-group .file-input{
+    border: 1px solid #fca0b7;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-item span{
+  font-size: 13px;
+  color: #333;
+}
+
+.images-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.image-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+.image-preview img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 0.375rem;
+}
+
+.error {
+  color: #e53e3e;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 640px) {
+  .form {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
