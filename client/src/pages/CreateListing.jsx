@@ -154,7 +154,7 @@ export default function CreateListing() {
     }
   };
 
-  return (
+  return (        
     <main className="profile">
       <h1 className="title">Create a Listing</h1>
       <form onSubmit={handleSubmit} className="form">
