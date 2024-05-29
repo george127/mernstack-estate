@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import './CreateListing.css';
+import { useState } from "react";
+import "./CreateListing.css";
 import {
   getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
-} from 'firebase/storage';
-import { app } from '../firebase';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+} from "firebase/storage";
+import { app } from "../firebase";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
@@ -16,10 +16,10 @@ export default function CreateListing() {
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     imageUrls: [],
-    name: '',
-    description: '',
-    address: '',
-    type: 'rent',
+    name: "",
+    description: "",
+    address: "",
+    type: "rent",
     bedrooms: 1,
     bathrooms: 1,
     regularPrice: 50,
@@ -51,12 +51,12 @@ export default function CreateListing() {
         }));
         setImageUploadError(false);
       } catch (err) {
-        setImageUploadError('Image upload failed (2 mb max per image)');
+        setImageUploadError("Image upload failed (2 mb max per image)");
       } finally {
         setUploading(false);
       }
     } else {
-      setImageUploadError('You can only upload 6 images per listing');
+      setImageUploadError("You can only upload 6 images per listing");
     }
   };
 
@@ -67,7 +67,7 @@ export default function CreateListing() {
       const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
-        'state_changed',
+        "state_changed",
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -93,7 +93,7 @@ export default function CreateListing() {
   };
 
   const handleChange = (e) => {
-    if (e.target.id === 'sale' || e.target.id === 'rent') {
+    if (e.target.id === "sale" || e.target.id === "rent") {
       setFormData({
         ...formData,
         type: e.target.id,
@@ -101,9 +101,9 @@ export default function CreateListing() {
     }
 
     if (
-      e.target.id === 'parking' ||
-      e.target.id === 'furnished' ||
-      e.target.id === 'offer'
+      e.target.id === "parking" ||
+      e.target.id === "furnished" ||
+      e.target.id === "offer"
     ) {
       setFormData({
         ...formData,
@@ -112,9 +112,9 @@ export default function CreateListing() {
     }
 
     if (
-      e.target.type === 'number' ||
-      e.target.type === 'text' ||
-      e.target.type === 'textarea'
+      e.target.type === "number" ||
+      e.target.type === "text" ||
+      e.target.type === "textarea"
     ) {
       setFormData({
         ...formData,
@@ -127,15 +127,15 @@ export default function CreateListing() {
     e.preventDefault();
     try {
       if (formData.imageUrls.length < 1)
-        return setError('You must upload at least one image');
+        return setError("You must upload at least one image");
       if (+formData.regularPrice < +formData.discountPrice)
-        return setError('Discount price must be lower than regular price');
+        return setError("Discount price must be lower than regular price");
       setLoading(true);
       setError(false);
-      const res = await fetch('/api/listing/create', {
-        method: 'POST',
+      const res = await fetch("/api/listing/create", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...formData,
@@ -154,7 +154,7 @@ export default function CreateListing() {
     }
   };
 
-  return (        
+  return (
     <main className="profile">
       <h1 className="title">Create a Listing</h1>
       <form onSubmit={handleSubmit} className="form">
@@ -193,7 +193,7 @@ export default function CreateListing() {
                 type="checkbox"
                 id="sale"
                 onChange={handleChange}
-                checked={formData.type === 'sale'}
+                checked={formData.type === "sale"}
               />
               <span>Sell</span>
             </label>
@@ -202,7 +202,7 @@ export default function CreateListing() {
                 type="checkbox"
                 id="rent"
                 onChange={handleChange}
-                checked={formData.type === 'rent'}
+                checked={formData.type === "rent"}
               />
               <span>Rent</span>
             </label>
@@ -274,7 +274,7 @@ export default function CreateListing() {
               />
               <div>
                 <p>Regular price</p>
-                {formData.type === 'rent' && <span>($ / month)</span>}
+                {formData.type === "rent" && <span>($ / month)</span>}
               </div>
             </div>
             {formData.offer && (
@@ -291,7 +291,7 @@ export default function CreateListing() {
                 />
                 <div>
                   <p>Discounted price</p>
-                  {formData.type === 'rent' && <span>($ / month)</span>}
+                  {formData.type === "rent" && <span>($ / month)</span>}
                 </div>
               </div>
             )}
@@ -317,7 +317,7 @@ export default function CreateListing() {
               onClick={handleImageSubmit}
               className="button bg-rose-200"
             >
-              {uploading ? 'Uploading...' : 'Upload'}
+              {uploading ? "Uploading..." : "Upload"}
             </button>
           </div>
           <p className="error">{imageUploadError && imageUploadError}</p>
@@ -338,11 +338,11 @@ export default function CreateListing() {
             disabled={loading || uploading}
             className="button bg-rose-200"
           >
-            {loading ? 'Creating...' : 'Create listing'}
+            {loading ? "Creating..." : "Create listing"}
           </button>
           {error && <p className="error">{error}</p>}
         </div>
       </form>
     </main>
   );
-}
+} 
