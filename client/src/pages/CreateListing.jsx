@@ -268,7 +268,7 @@ export default function CreateListing() {
                 min="50"
                 max="10000000"
                 required
-                className="Input"
+                className="Input"  
                 onChange={handleChange}
                 value={formData.regularPrice}
               />

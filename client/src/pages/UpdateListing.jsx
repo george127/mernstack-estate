@@ -288,7 +288,7 @@ export default function CreateListing() {
             </div>
             {formData.offer && (
               <div className="checkbox-item">
-                <input
+                <input  
                   type="number"
                   id="discountPrice"
                   min="0"
