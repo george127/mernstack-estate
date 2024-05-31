@@ -118,3 +118,40 @@ body {
     margin-bottom: 20px;
     width: 100%;
 }
+
+
+.profile-listings{
+    margin-top: 5em;
+}
+
+.profile-listings-heading{
+    text-align: center;
+}
+
+.profile-listings .profile-listing{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.profile-listing-image{
+    width: 100px;
+}
+
+.profile-listing-link{
+    font-size: 14px;
+}
+
+.profile-listing-buttons{
+    display: grid;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.profile-delete-listing{
+    outline: none;
+    border: none;
+    color: #ff0101;
+    margin-bottom: 10px;
+}
