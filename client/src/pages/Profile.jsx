@@ -56,7 +56,7 @@ export default function Profile() {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-          setFormData({ ...formData, avatar: downloadURL })
+          setFormData((prevData) => ({ ...prevData, avatar: downloadURL }))
         );
       }
     );
@@ -139,7 +139,7 @@ export default function Profile() {
   };
 
   const handleListingDelete = async (listingId) => {
-      try {
+    try {
       const res = await fetch(`/api/listing/delete/${listingId}`, {
         method: "DELETE",
       });

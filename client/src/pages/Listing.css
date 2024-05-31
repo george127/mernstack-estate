@@ -1,0 +1,14 @@
+/* styles.css */
+.loading-text,
+.error-text {
+  text-align: center;
+  margin: 1.75rem 0;
+  font-size: 1.5rem;
+}
+
+.image-slide {
+  height: 550px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
