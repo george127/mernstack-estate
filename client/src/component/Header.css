@@ -44,19 +44,25 @@ body {
     width: 200px;
     border-radius: 5px;
     color: #851f1f;
-    cursor: pointer;    
 }
 
 .header .container .forms-container .input::placeholder{
     color: #851f1f;
 }
 
-.header .container .forms-container .material-symbols-outlined{
+.header .container .forms-container button{
     position: absolute;
     right: 20px;
-    font-size: 20px;
+    border: none;
+    outline: none;
     cursor: pointer;
+}
+
+.header .container .forms-container button .material-symbols-outlined{
+    font-size: 20px;
     color: #851f1f;
+    display: flex;
+    align-items: center;
 }
 
 .header .container .link-container{
