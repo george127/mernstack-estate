@@ -1,0 +1,33 @@
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Equivalent to 'gap-2' in Tailwind CSS */
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px; /* Equivalent to 'p-3' in Tailwind CSS */
+    border-radius: 8px; /* Equivalent to 'rounded-lg' in Tailwind CSS */
+  }
+  
+  .send-message-button {
+    background-color: #334155; /* Equivalent to 'bg-slate-700' in Tailwind CSS */
+    color: #fff;
+    text-align: center;
+    padding: 10px; /* Equivalent to 'p-3' in Tailwind CSS */
+    text-transform: uppercase; /* Equivalent to 'uppercase' in Tailwind CSS */
+    border-radius: 8px; /* Equivalent to 'rounded-lg' in Tailwind CSS */
+    display: block;
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+  
+  .send-message-button:hover {
+    opacity: 0.95; /* Equivalent to 'hover:opacity-95' in Tailwind CSS */
+  }
+  
