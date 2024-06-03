@@ -16,38 +16,52 @@ import {
 } from "react-icons/fa";
 import Contact from "../component/Contact"; // Ensure the correct path
 
+
 SwiperCore.use([Navigation]);
 
 export default function Listing() {
+  const { listingId } = useParams(); 
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [contact, setContact] = useState(false);
-  const params = useParams();
   const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        setLoading(true);
-        const res = await fetch(`/api/listing/get/${params.listingId}`);
+        setLoading(true); // Set loading to true at the beginning of the fetch
+        const res = await fetch(`/api/listing/get/${listingId}`);
+        
+        if (!res.ok) {
+          // If the response status is not OK, throw an error
+          throw new Error('Network response was not ok');
+        }
+
         const data = await res.json();
+
         if (data.success === false) {
+          // If the response data indicates success is false, handle error
           setError(true);
           setLoading(false);
           return;
         }
-        setListing(data);
-        setLoading(false);
-        setError(false);
+
+        setListing(data); // Set the listing data
+        setError(false); // Reset error state
       } catch (error) {
+        // Handle any errors during the fetch
+        console.error('Fetch error:', error);
         setError(true);
+      } finally {
+        // Ensure loading state is set to false at the end of the fetch
         setLoading(false);
       }
     };
+
     fetchListing();
-  }, [params.listingId]);
+  }, [listingId]);
 
   return (
     <main>
@@ -103,7 +117,7 @@ export default function Listing() {
               </p>
               {listing.offer && (
                 <p className="bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
-                  ${+listing.regularPrice - +listing.discountPrice}
+                  ${+listing.regularPrice - +listing.discountPrice} OFF
                 </p>
               )}
             </div>

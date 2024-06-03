@@ -1,9 +1,13 @@
 import "./Search.css";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import ListingItem from '../component/ListingItem';
+
 
 export default function Search() {
   const navigate = useNavigate();
+  const location = useLocation();
+  
   const [sidebardata, setSidebardata] = useState({
     searchTerm: "",
     type: "all",
@@ -50,46 +54,32 @@ export default function Search() {
 
     const fetchListings = async () => {
       setLoading(true);
-      const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/listing/get?${searchQuery}`);
-      const data = await res.json();
-      setListings(data);
-      setLoading(false);
+      try {
+        const searchQuery = urlParams.toString();
+        const res = await fetch(`/api/listing/get?${searchQuery}`);
+        const data = await res.json();
+        setListings(data);
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchListings();
   }, [location.search]);
 
   const handleChange = (e) => {
-    if (
-      e.target.id === "all" ||
-      e.target.id === "rent" ||
-      e.target.id === "sale"
-    ) {
-      setSidebardata({ ...sidebardata, type: e.target.id });
-    }
+    const { id, value, checked } = e.target;
 
-    if (e.target.id === "searchTerm") {
-      setSidebardata({ ...sidebardata, searchTerm: e.target.value });
-    }
-
-    if (
-      e.target.id === "parking" ||
-      e.target.id === "furnished" ||
-      e.target.id === "offer"
-    ) {
-      setSidebardata({
-        ...sidebardata,
-        [e.target.id]:
-          e.target.checked || e.target.checked === "true" ? true : false,
-      });
-    }
-
-    if (e.target.id === "sort_order") {
-      const sort = e.target.value.split("_")[0] || "created_at";
-
-      const order = e.target.value.split("_")[1] || "desc";
-
+    if (id === "all" || id === "rent" || id === "sale") {
+      setSidebardata({ ...sidebardata, type: id });
+    } else if (id === "searchTerm") {
+      setSidebardata({ ...sidebardata, searchTerm: value });
+    } else if (id === "parking" || id === "furnished" || id === "offer") {
+      setSidebardata({ ...sidebardata, [id]: checked });
+    } else if (id === "sort_order") {
+      const [sort, order] = value.split("_");
       setSidebardata({ ...sidebardata, sort, order });
     }
   };
@@ -107,6 +97,7 @@ export default function Search() {
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
+
   return (
     <div className="search-container">
       <div className="search-sidebar">
@@ -194,22 +185,11 @@ export default function Search() {
           </div>
           <div className="form-group">
             <label className="form-label">Sort:</label>
-            <select id="sort_order" className="form-select">
-              <option>Price high to low</option>
-              <option>Price low to high</option>
-              <option>Latest</option>
-              <option>Oldest</option>
-              <select
-              onChange={handleChange}
-              defaultValue={'created_at_desc'}
-              id='sort_order'
-              className='border rounded-lg p-3'
-            >
-              <option value='regularPrice_desc'>Price high to low</option>
-              <option value='regularPrice_asc'>Price low to hight</option>
-              <option value='createdAt_desc'>Latest</option>
-              <option value='createdAt_asc'>Oldest</option>
-            </select>
+            <select id="sort_order" className="form-select" onChange={handleChange}>
+              <option value="regularPrice_desc">Price high to low</option>
+              <option value="regularPrice_asc">Price low to high</option>
+              <option value="createdAt_desc">Latest</option>
+              <option value="createdAt_asc">Oldest</option>
             </select>
           </div>
           <button className="search-button">Search</button>
@@ -217,7 +197,25 @@ export default function Search() {
       </div>
       <div className="listing-results">
         <h1 className="results-title">Listing results:</h1>
+        <div className='p-7 flex flex-wrap gap-4'>
+          {!loading && listings.length === 0 && (
+            <p className='text-xl text-slate-700'>No listing found!</p>
+          )}
+          {loading && (
+            <p className='text-xl text-slate-700 text-center w-full'>
+              Loading...
+            </p>
+          )}
+
+          {!loading &&
+            listings &&
+            listings.map((listing) => (
+              <ListingItem key={listing._id} listing={listing} />
+            ))}
+        </div>
+  
       </div>
     </div>
   );
 }
+ 

@@ -348,6 +348,7 @@ export default function CreateListing() {
             className="button bg-rose-200"
           >
             {loading ? 'Updating...' : 'Update listing'}
+            
           </button>
           {error && <p className="error">{error}</p>}
         </div>
