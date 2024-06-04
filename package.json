@@ -1,7 +1,7 @@
 {
   "name": "mern-estate",
   "version": "1.0.0",
-  "description": "",
+  "description": "A MERN stack real estate application",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,8 +9,8 @@
     "start": "node api/index.js",
     "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["real estate", "mern"],
+  "author": "Your Name",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -19,7 +19,9 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.4",
-    "nodemon": "^3.1.0",
     "redux-persist": "^6.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
