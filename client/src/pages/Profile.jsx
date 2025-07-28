@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import {
   getDownloadURL,
   getStorage,
-  ref,
+  ref, 
   uploadBytesResumable,
 } from "firebase/storage";
 import { app } from "../firebase";
