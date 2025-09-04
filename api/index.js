@@ -6,8 +6,9 @@ import authRouter from './routes/auth.route.js';
 import cookieParser from 'cookie-parser';
 import listingRouter from './routes/listing.route.js';
 import path from 'path';
-dotenv.config(); 
+import cors from 'cors';
 
+dotenv.config(); 
 
 const __dirname = path.resolve();
 
@@ -17,6 +18,11 @@ const app = express();
 app.use(express.json());
 
 app.use(cookieParser());
+
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://mernstack-estate-2.onrender.com'],
+  credentials: true 
+}));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO)
@@ -40,7 +46,7 @@ app.use("/api/listing", listingRouter);
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html')); 
 })
 
 // Start the server
